@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MAS\StudentController as MASStudent;
 use App\Http\Controllers\MAS\ClassController as MASClass;
 use App\Http\Controllers\Product\ProductController as CP;
+use App\Http\Controllers\Brand\BrandController as CB;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,7 +38,7 @@ Route::prefix('class')->group(function(){
 });
 
 
-Route::prefix('product/')->group(function(){
+Route::middleware('role:admin')->prefix('product/')->group(function(){
         Route::get('/', [CP::class, 'index'])->name('product.index');
         Route::Post('/store', [CP::class, 'store'])->name('product.store');
         Route::get('/create',[CP::class, 'create'])->name('product.create');
@@ -47,3 +48,17 @@ Route::prefix('product/')->group(function(){
         Route::put('/{kd_barang}/update',[CP::class, 'update'])->name('product.update');
 
 });
+
+Route::prefix('brand/')->group(function(){
+    Route::get('/', [CB::class, 'index'])->name('brand.index');
+    Route::Post('/store', [CB::class, 'store'])->name('brand.store');
+    Route::get('/create',[CB::class, 'create'])->name('brand.create');
+    Route::delete('/{kd_merek}/destroy',[CB::class, 'destroy'])->name('brand.destroy');
+    Route::get('/{kd_merek}/show',[CB::class, 'show'])->name('brand.show');
+    Route::get('/{kd_merek}/edit',[CB::class, 'edit'])->name('brand.edit');
+    Route::put('/{kd_merek}/update',[CB::class, 'update'])->name('brand.update');
+
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

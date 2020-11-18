@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('kd_barang');
             $table->string('nama_barang');
-            $table->string('kd_merek');
+            $table->unsignedBigInteger('kd_merek');
             $table->string('kd_distributor');
             $table->date('tanggal_masuk');
             $table->string('harga_barang');
