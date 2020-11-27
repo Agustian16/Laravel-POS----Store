@@ -1,4 +1,4 @@
-@extends('mas.students.layout')
+@extends('layouts.layout')
 
 @section('content')
 <div class="row">
@@ -36,25 +36,22 @@
                 <input type="text" name="nama_barang" class="form-control" placeholder="Name Product">
             </div>
         </div>
+        
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Brand:</strong>
-                <input type="text" name="kd_merek" class="form-control" placeholder="Select Brand">
-            </div>
-        </div>
-        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Gender:</strong>
-                <input type="text" name="gender" class="form-control" placeholder="Gender">
-            </div>
-        </div> --}}
+            <label for="exampleFormControlSelect1" name="kd_merek">Brand:</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="kd_merek">
+                {{-- @foreach ($data_brands as $product )
+                <option value="{{ $product->id }}">{{ $product->merek }}</option>                    
+                <option value="">1</option>
+                @endforeach --}}
 
+            </select>
+          </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <label for="exampleFormControlSelect1" name="kd_distributor">Example select</label>
+            <label for="exampleFormControlSelect1" name="kd_distributor">Distributor:</label>
             <select class="form-control" id="exampleFormControlSelect1" name="kd_distributor">
               <option>MALE</option>
-              <option>FEMALE</option>
             </select>
           </div>
 
@@ -71,7 +68,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Price:</strong>
-                <input type="text" name="harga_barang" class="form-control" placeholder="Price Product">
+                <input type="number" name="harga_barang" class="form-control" placeholder="Price Product">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

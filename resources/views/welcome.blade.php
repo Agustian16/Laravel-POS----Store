@@ -53,7 +53,7 @@
                       <div class="card bg-secondary mb-3">
                           <div class="card-body">
                               <p class="card-title text-white">Agus</p>
-                             <a href="{{ route('students.index') }}" class="btn btn-primary">Go Student</a>
+                             <a href="{{ route('product.index') }}" class="btn btn-primary">Go Product</a>
                          </div>
                      </div>
                   </div>

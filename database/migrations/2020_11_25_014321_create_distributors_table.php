@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasClassesTable extends Migration
+class CreateDistributorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateMasClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mas_classes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
+        Schema::create('distributors', function (Blueprint $table) {
+            $table->increments('kd_distributor');
+            $table->string('nama_distributor');
+            $table->string('alamat');
+            $table->string('no_telp');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateMasClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mas_classes');
+        Schema::dropIfExists('distributors');
     }
 }

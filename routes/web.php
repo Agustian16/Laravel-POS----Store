@@ -6,38 +6,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MAS\StudentController as MASStudent;
 use App\Http\Controllers\MAS\ClassController as MASClass;
 use App\Http\Controllers\Product\ProductController as CP;
-use App\Http\Controllers\Brand\BrandController as CB;
+use App\Http\Controllers\BrandController as CB;
+use App\Http\Controllers\DistributorController as CD;
+use App\Http\Controllers\TransaksiController as CT;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-
-// Agus Route
-Route::prefix('mas/')->group(function(){
-    Route::prefix('students')->group(function(){
-        Route::get('/', [MASStudent::class, 'index'])->name('students.index');
-        Route::Post('/store', [MASStudent::class, 'store'])->name('mas.students.store');
-        Route::get('/create',[MASStudent::class, 'create'])->name('mas.students.create');
-        Route::delete('/{nis}/destroy',[MASStudent::class, 'destroy'])->name('students.destroy');
-        Route::get('/{nis}/show',[MASStudent::class, 'show'])->name('students.show');
-        Route::get('/{nis}/edit',[MASStudent::class, 'edit'])->name('students.edit');
-        Route::put('/{nis}/update',[MASStudent::class, 'update'])->name('students.update');
-
-});
-
-Route::prefix('class')->group(function(){
-        Route::get('/', [MASClass::class, 'index'])->name('class.index');
-            Route::Post('/store', [MASClass::class, 'store'])->name('mas.class.store');
-            Route::get('/create',[MASClass::class, 'create'])->name('mas.class.create');
-            Route::delete('/{id}/destroy',[MASClass::class, 'destroy'])->name('class.destroy');
-            Route::get('/{id}/show',[MASClass::class, 'show'])->name('masclass.show');
-            Route::get('/{id}/edit',[MASClass::class, 'edit'])->name('masclass.edit');
-            Route::put('/{id}/update',[MASClass::class, 'update'])->name('masclass.update');
-    });
-});
-
-
+// Product Route
 Route::middleware('role:admin')->prefix('product/')->group(function(){
         Route::get('/', [CP::class, 'index'])->name('product.index');
         Route::Post('/store', [CP::class, 'store'])->name('product.store');
@@ -49,7 +26,8 @@ Route::middleware('role:admin')->prefix('product/')->group(function(){
 
 });
 
-Route::prefix('brand/')->group(function(){
+// Brand Route
+Route::middleware('role:admin')->prefix('brand/')->group(function(){
     Route::get('/', [CB::class, 'index'])->name('brand.index');
     Route::Post('/store', [CB::class, 'store'])->name('brand.store');
     Route::get('/create',[CB::class, 'create'])->name('brand.create');
@@ -59,6 +37,26 @@ Route::prefix('brand/')->group(function(){
     Route::put('/{kd_merek}/update',[CB::class, 'update'])->name('brand.update');
 
 });
+
+// Distributor Route
+Route::middleware('role:admin')->prefix('distributor/')->group(function(){
+    Route::get('/', [CD::class, 'index'])->name('distributor.index');
+    Route::Post('/store', [CD::class, 'store'])->name('distributor.store');
+    Route::get('/create',[CD::class, 'create'])->name('distributor.create');
+    Route::delete('/{kd_merek}/destroy',[CD::class, 'destroy'])->name('distributor.destroy');
+    Route::get('/{kd_distributor}/show',[CD::class, 'show'])->name('distributor.show');
+    Route::get('/{kd_distributor}/edit',[CD::class, 'edit'])->name('distributor.edit');
+    Route::put('/{kd_distributor}/update',[CD::class, 'update'])->name('distributor.update');
+
+});
+
+// Transaksi Route
+Route::middleware('role:kasir')->prefix('transaksi/')->group(function(){
+    Route::get('/', [CT::class, 'index'])->name('transaksi.index');
+
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

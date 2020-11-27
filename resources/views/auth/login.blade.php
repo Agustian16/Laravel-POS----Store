@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
+
+<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+<img src="assets/img/welcome.png" alt="welcome">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
 @section('content')
-<div class="container">
+<div class="container login">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

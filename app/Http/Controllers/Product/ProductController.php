@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-
+use App\Models\Brand;
 class ProductController extends Controller
 {
     public function index()
     {
-      $products = Product::latest()->paginate(5);
-  
-  
+
+     $products = Product::all();
+    //  $products->load('kd_merek');
+     
+     $products = Product::latest()->paginate(5);
      return view('product.index',compact('products'))
          ->with('i', (request()->input('page',1) - 1) * 5);//
   
@@ -20,7 +22,12 @@ class ProductController extends Controller
   
     public function create()
     {
+        $data_brands = Brand::all();
+
+        
         return view('product.create');
+        return view('product.create', compact('data_brands'));
+        
     }
   
     /**
@@ -33,7 +40,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'nama_barang' => 'required',
-            'kd_merek' => 'required',
+            // 'kd_merek' => 'required',
             'kd_distributor' => 'required',
             'tanggal_masuk' => 'required',
             'harga_barang' => 'required',
@@ -68,8 +75,9 @@ class ProductController extends Controller
     public function edit($kd_barang)
     {
       $product = Product::where('kd_barang',$kd_barang)->first();
+      $brand = Brand::all();
   
-        return view('product.edit',compact('product'));
+        return view('product.edit',compact('product','brand'));
     }
   
     /**
