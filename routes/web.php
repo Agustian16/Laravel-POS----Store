@@ -1,18 +1,27 @@
 <?php
 
+
+// Source Controller
 use Illuminate\Support\Facades\Route;
-
-
-use App\Http\Controllers\MAS\StudentController as MASStudent;
-use App\Http\Controllers\MAS\ClassController as MASClass;
 use App\Http\Controllers\Product\ProductController as CP;
 use App\Http\Controllers\BrandController as CB;
 use App\Http\Controllers\DistributorController as CD;
 use App\Http\Controllers\TransaksiController as CT;
+use App\Http\Controllers\ManagerController as CM;
 
+// Login Route
 Route::get('/', function () {
     return view('auth.login');
 });
+
+// Logout Route
+Route::get('logout', function ()
+{
+    auth()->logout();
+    Session()->flush();
+
+    return Redirect::to('/');
+})->name('logout');
 
 // Product Route
 Route::middleware('role:admin')->prefix('product/')->group(function(){
@@ -55,6 +64,13 @@ Route::middleware('role:kasir')->prefix('transaksi/')->group(function(){
     Route::get('/', [CT::class, 'index'])->name('transaksi.index');
 
 });
+
+// Manager Route
+Route::middleware('role:manager')->prefix('manager/')->group(function(){
+    Route::get('/', [CM::class, 'index'])->name('manager.index');
+
+});
+
 
 
 Auth::routes();

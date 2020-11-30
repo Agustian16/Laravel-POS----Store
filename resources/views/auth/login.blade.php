@@ -2,10 +2,18 @@
 
 
 <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
-<img src="assets/img/welcome.png" alt="welcome">
+<link href="{{ asset('/css/login.css') }}" rel="stylesheet">
+{{-- <img src="assets/img/welcome.png" alt="welcome"> --}}
+
+<h1>Welcome to<br>Online Cashier</h1>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
+{{-- Font Title --}}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
+
+<body>
 @section('content')
 <div class="container login">
     <div class="row justify-content-center">
@@ -77,3 +85,4 @@
     </div>
 </div>
 @endsection
+</body>

@@ -16,7 +16,7 @@
                     <a class="nav-link" href="{{ route('product.index') }}">Product</a>
                     <a class="nav-link" href="{{ route('brand.index') }}">Brand</a>
                     <a class="nav-link" href="{{ route('distributor.index') }}" tabindex="-1" aria-disabled="true">Distributor</a>
-                    <a class="nav-item btn btn-warning button" href="{{ route('home') }}">Logout</a>
+                    <a class="nav-item btn btn-warning button" href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>
         </div>
