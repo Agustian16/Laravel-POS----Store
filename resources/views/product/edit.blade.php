@@ -47,17 +47,21 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Brand:</strong>
-                <input type="text" name="kd_merek" class="form-control" placeholder="Brand" value="{{ $product->kd_merek }}">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Distributor:</strong>
-                <input type="text" name="kd_distributor" class="form-control" placeholder="Distributor" value="{{ $product->kd_distributor }}">
-            </div>
-        </div>
+            <label for="exampleFormControlSelect1" name="kd_merek">Brand:</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="kd_merek">
+                @foreach ($brands as $b)
+                <option value="{{ $b->kd_merek }}">{{ $b->merek }}</option>
+                @endforeach
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <label for="exampleFormControlSelect1" name="kd_distributor">Distributor:</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="kd_distributor">
+                @foreach ($distributors as $d )
+                <option value="{{ $b->kd_distributor }}">{{ $d->nama_distributor }}</option>
+                @endforeach
+            </select>
+          </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date Entry:</strong>

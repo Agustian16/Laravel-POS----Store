@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
-{
+{   
+    protected $table ='brands';
 
-    public function products(){
-        return $this->hasMany(Product::class);
+    public function barang(){
+        return $this->belongsTo('App\Models\Product');
     }
 
     use HasFactory;
     protected $fillable =[
         'kd_merek','merek'
     ];
-    protected $table ='brands';
+   
     protected $primaryKey = 'kd_merek';
     // public $timestamps = false;
 }

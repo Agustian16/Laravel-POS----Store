@@ -10,4 +10,14 @@ class Transaksi extends Model
     use HasFactory;
     protected $fillable =['kd_transaksi','kd_barang','kd_user','jumlah_beli','total_harga','tanggal_beli'];
 
+    // ^Product Relasionship
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product');
+    }
+    // ^Users Relasionship
+    public function users()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 }

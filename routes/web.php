@@ -1,7 +1,7 @@
 <?php
 
 
-// Source Controller
+//^ Source Controller
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Product\ProductController as CP;
 use App\Http\Controllers\BrandController as CB;
@@ -9,12 +9,12 @@ use App\Http\Controllers\DistributorController as CD;
 use App\Http\Controllers\TransaksiController as CT;
 use App\Http\Controllers\ManagerController as CM;
 
-// Login Route
+//^ Login Route
 Route::get('/', function () {
     return view('auth.login');
 });
 
-// Logout Route
+//^ Logout Route
 Route::get('logout', function ()
 {
     auth()->logout();
@@ -23,7 +23,7 @@ Route::get('logout', function ()
     return Redirect::to('/');
 })->name('logout');
 
-// Product Route
+//^ Product Route
 Route::middleware('role:admin')->prefix('product/')->group(function(){
         Route::get('/', [CP::class, 'index'])->name('product.index');
         Route::Post('/store', [CP::class, 'store'])->name('product.store');
@@ -35,7 +35,7 @@ Route::middleware('role:admin')->prefix('product/')->group(function(){
 
 });
 
-// Brand Route
+//^ Brand Route
 Route::middleware('role:admin')->prefix('brand/')->group(function(){
     Route::get('/', [CB::class, 'index'])->name('brand.index');
     Route::Post('/store', [CB::class, 'store'])->name('brand.store');
@@ -47,7 +47,7 @@ Route::middleware('role:admin')->prefix('brand/')->group(function(){
 
 });
 
-// Distributor Route
+//^ Distributor Route
 Route::middleware('role:admin')->prefix('distributor/')->group(function(){
     Route::get('/', [CD::class, 'index'])->name('distributor.index');
     Route::Post('/store', [CD::class, 'store'])->name('distributor.store');
@@ -59,20 +59,25 @@ Route::middleware('role:admin')->prefix('distributor/')->group(function(){
 
 });
 
-// Transaksi Route
+//^ Transaksi Route
 Route::middleware('role:kasir')->prefix('transaksi/')->group(function(){
     Route::get('/', [CT::class, 'index'])->name('transaksi.index');
+    Route::Post('/store', [CT::class, 'store'])->name('transaksi.store');
+    Route::get('/create',[CT::class, 'create'])->name('transaksi.create');
+    Route::delete('/{kd_transaksi}/destroy',[CT::class, 'destroy'])->name('transaksi.destroy');
+    Route::get('/{kd_transaksi}/show',[CT::class, 'show'])->name('transaksi.show');
+    Route::get('/{kd_transaksi}/edit',[CT::class, 'edit'])->name('transaksi.edit');
+    Route::put('/{kd_transaksi}/update',[CT::class, 'update'])->name('transaksi.update');
 
 });
-
-// Manager Route
+//^ Manager Route
 Route::middleware('role:manager')->prefix('manager/')->group(function(){
     Route::get('/', [CM::class, 'index'])->name('manager.index');
-
+    Route::get('/product', [CM::class, 'product'])->name('manager.product');
+    Route::get('/export_excel', [CM::class, 'export_excel'])->name('manager.xlsx');
+    Route::get('/cetak-pertanggal', [CM::class, 'cetakPertanggal'])->name('manager.cetak-pertanggal');
 });
 
-
-
 Auth::routes();
-
+// ^Home route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

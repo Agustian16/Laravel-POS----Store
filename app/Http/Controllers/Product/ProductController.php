@@ -6,27 +6,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Models\Distributor;
+
 class ProductController extends Controller
 {
+    
     public function index()
     {
-
-     $products = Product::all();
-    //  $products->load('kd_merek');
-     
+     $brands = Brand::all();
+     $distributors = Distributor::all();
      $products = Product::latest()->paginate(5);
-     return view('product.index',compact('products'))
-         ->with('i', (request()->input('page',1) - 1) * 5);//
-  
+     return view('product.index',compact('products','brands','distributors'))
+         ->with('i', (request()->input('page',1) - 1) * 5);
     }
   
     public function create()
     {
-        $data_brands = Brand::all();
-
-        
-        return view('product.create');
-        return view('product.create', compact('data_brands'));
+        $brands = Brand::all();
+        $distributors = Distributor::all();
+        return view('product.create', compact('brands','distributors'));
         
     }
   
@@ -41,7 +39,7 @@ class ProductController extends Controller
         $request->validate([
             'nama_barang' => 'required',
             // 'kd_merek' => 'required',
-            'kd_distributor' => 'required',
+            // 'kd_distributor' => 'required',
             'tanggal_masuk' => 'required',
             'harga_barang' => 'required',
             'stok_barang' => 'required',
@@ -75,9 +73,10 @@ class ProductController extends Controller
     public function edit($kd_barang)
     {
       $product = Product::where('kd_barang',$kd_barang)->first();
-      $brand = Brand::all();
+      $brands = Brand::all();
+      $distributors = Distributor::all();
   
-        return view('product.edit',compact('product','brand'));
+        return view('product.edit',compact('product','brands','distributors'));
     }
   
     /**

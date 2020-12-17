@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Distributor;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class DistributorController extends Controller
 {
@@ -31,9 +33,12 @@ class DistributorController extends Controller
         ]);
   
         Distributor::create($request->all());
-  
+        
+        Alert::success('Success Title', 'Success Message');
         return redirect('distributor')
-                        ->with('success','Distributor created successfully.');
+                                      ->with('success', 'Data Created Successfully!');
+                                      
+
     }
   
     public function show($kd_distributor)

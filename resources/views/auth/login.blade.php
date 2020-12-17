@@ -11,16 +11,20 @@
 
 {{-- Font Title --}}
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <body>
 @section('content')
 <div class="container login">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
+            <div class="card shadow-lg p-3 mb-5 bg-white">
+                {{-- <div class="card-header">{{ __('Login') }}</div> --}}
+                <h1 class="title-login">Login</h1>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -71,13 +75,22 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                                {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif
+                                @endif --}}
+                                    <br><br>
+                        {{-- reCAPTCHA --}}
+                        <div class="form-group row captcha">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="g-recaptcha" data-sitekey="6LcwkPQZAAAAAMNsvR55-WzTqyaLckxQrY76aX_w"></div>
                             </div>
                         </div>
+
+                        {{-- END of reCAPTCHA --}}
+                    </div>
+                </div>
                     </form>
                 </div>
             </div>

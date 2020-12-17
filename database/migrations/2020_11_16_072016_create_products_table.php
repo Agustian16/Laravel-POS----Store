@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('kd_barang');
             $table->string('nama_barang');
             $table->unsignedBigInteger('kd_merek')->nullable();
-            $table->string('kd_distributor');
+            $table->string('kd_distributor')->nullable();
             $table->date('tanggal_masuk');
             $table->string('harga_barang');
             $table->string('stok_barang');

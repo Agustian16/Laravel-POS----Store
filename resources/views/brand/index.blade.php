@@ -38,18 +38,22 @@
         </div>
     @endif
 <div class="container">
-    <table class="table table-bordered table-responsive-lg table-hover" style="margin-top:5px;">
+    <table class="table table-bordered table-responsive-lg hover" style="margin-top:5px;" id="mytable">
+        <thead>
         <tr class="bg-info">
             <th>No.</th>
             <th>ID Brand</th>
             <th>Name Brand</th>
             <th width="280px">Action</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach ($brands as $brand)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $brand->kd_merek }}</td>
             <td>{{ $brand->merek }}</td>
+            <br>
             <td>
                 <form action="{{ route('brand.destroy',$brand->kd_merek) }}" method="POST">
                     <a href="{{ route('brand.show', $brand->kd_merek) }}" title="show">
@@ -67,6 +71,7 @@
             </td>
         </tr>
         @endforeach
+    </tbody>
     </table>
 {!! $brands->links() !!}
 @endsection

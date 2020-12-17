@@ -40,18 +40,18 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <label for="exampleFormControlSelect1" name="kd_merek">Brand:</label>
             <select class="form-control" id="exampleFormControlSelect1" name="kd_merek">
-                {{-- @foreach ($data_brands as $product )
-                <option value="{{ $product->id }}">{{ $product->merek }}</option>                    
-                <option value="">1</option>
-                @endforeach --}}
-
+                @foreach ($brands as $b)
+                <option value="{{ $b->kd_merek }}">{{ $b->merek }}</option>
+                @endforeach
             </select>
           </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <label for="exampleFormControlSelect1" name="kd_distributor">Distributor:</label>
             <select class="form-control" id="exampleFormControlSelect1" name="kd_distributor">
-              <option>MALE</option>
+                @foreach ($distributors as $d )
+                <option value="{{ $b->kd_distributor }}">{{ $d->nama_distributor }}</option>
+                @endforeach
             </select>
           </div>
 

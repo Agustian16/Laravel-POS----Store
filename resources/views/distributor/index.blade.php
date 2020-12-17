@@ -1,7 +1,8 @@
+@include('sweetalert::alert')
 @extends('layouts.layout')
 @extends('layouts.navbar')
-
 @section('content')
+
 <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
         rel="stylesheet">
@@ -35,8 +36,10 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    <br>
 <div class="container">
-    <table class="table table-bordered table-responsive-lg table-hover" style="margin-top:5px;">
+    <table class="table table-bordered table-responsive-lg hover" style="margin-top:5px;" id="mytable">
+        <thead>
         <tr class="bg-info">
             <th>No.</th>
             <th>ID</th>
@@ -45,6 +48,8 @@
             <th>Phone</th>
             <th width="280px">Action</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach ($distributors as $distributor)
         <tr>
             <td>{{ ++$i }}</td>
@@ -69,8 +74,10 @@
             </td>
         </tr>
         @endforeach
+    </tbody>
     </table>
 {!! $distributors->links() !!}
 @endsection
 </div>
+
 </body>
