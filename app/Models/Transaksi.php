@@ -13,7 +13,7 @@ class Transaksi extends Model
     // ^Product Relasionship
     public function products()
     {
-        return $this->hasMany('App\Models\Product');
+        return $this->hasMany(Product::class);
     }
     // ^Users Relasionship
     public function users()

@@ -75,7 +75,8 @@ Route::middleware('role:manager')->prefix('manager/')->group(function(){
     Route::get('/', [CM::class, 'index'])->name('manager.index');
     Route::get('/product', [CM::class, 'product'])->name('manager.product');
     Route::get('/export_excel', [CM::class, 'export_excel'])->name('manager.xlsx');
-    Route::get('/cetak-pertanggal', [CM::class, 'cetakPertanggal'])->name('manager.cetak-pertanggal');
+    Route::get('/cetak-tanggal', [CM::class, 'cetakPertanggal'])->name('cetak-tanggal');
+
 });
 
 Auth::routes();

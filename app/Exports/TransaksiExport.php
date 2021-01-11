@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\MOdels\Transaksi;
+use App\MOdels\TransactionView;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -14,7 +14,7 @@ class TransaksiExport implements FromView
     public function view(): View
     {
         return view('manager.excel.transaksi', [
-            'transaksis' => Transaksi::all()
+            'transaksis' => TransactionView::all()
         ]);
     }
 }

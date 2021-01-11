@@ -139,10 +139,10 @@
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <div class="dropdown-header text-center">
                   <img class="img-md rounded-circle" src="/src/assets/images/faces/face8.jpg" alt="Profile image">
-                  @foreach ($transaksis as $transaksi)
+                  {{-- @foreach ($transaksis as $transaksi)
                   <p class="mb-1 mt-3 font-weight-semibold">{{ $transaksi->kd_user }}</p>   
-                  @endforeach
-                  <p class="font-weight-light text-muted mb-0">email@gmail.com</p>
+                  @endforeach --}}
+                  <p class="font-weight-light text-muted mb-0">admin@gmail.com</p>
                 </div>
                 <a class="dropdown-item">My Profile <span class="badge badge-pill badge-danger">1</span><i class="dropdown-item-icon ti-dashboard"></i></a>
                 <a class="dropdown-item">Messages<i class="dropdown-item-icon ti-comment-alt"></i></a>
@@ -202,39 +202,41 @@
               </div>
               <div class="col-md-12">
                 <div class="page-header-toolbar">
-                  <div class="btn-group toolbar-item" role="group" aria-label="Basic example">
-                    <label class="sr-only" for="inlineFormInputName2">Date</label>
-                    <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe">
-                  </div>
+                  
                   {{-- Print Date --}}
                   <div class="card-body">
-                    <div class="input-group mb-3">
-                      <label for="label">Tanggal Awal</label>
-                      <input type="date" name="tgl_awal" id="tgl_awal" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                      <label for="label">Tanggal Akhir</label>
-                      <input type="date" name="tgl_akhir" id="tgl_akhir" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                      <a href="#" target="blank" class="btn btn-primary col-md-12">Print Report Date</a>
-                    </div>
-                  </div>
-
-                  {{-- End OF Print Date --}}
-
-
-
-                  <div class="filter-wrapper">
-                    <div class="dropdown toolbar-item">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownsorting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Day</button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownsorting">
-                        <a class="dropdown-item" href="#">Last Day</a>
-                        <a class="dropdown-item" href="#">Last Month</a>
-                        <a class="dropdown-item" href="#">Last Year</a>
+                    <form action="{{ route('cetak-tanggal') }}">
+                      <div class="input-group mb-3">
+                        <label for="label">Start Date</label>
+                        <input type="date" name="tgl_awal" id="tgl_awal" class="form-control awal">
                       </div>
-                    </div>
+                      <div class="input-group mb-3">
+                        <label for="label">End Date</label>
+                        <input type="date" name="tgl_akhir" id="tgl_akhir" class="form-control">
+                      </div>
+                      {{-- <div class="input-group mb-3">
+                        <a href="{{ route('cetak-tanggal') }}" onclick="this.href='/cetak-tanggal'+ document.getElementByI('tgl_awal').value + 
+                        '/' + document.getElementByI('tgl_akhir').value " target="blank" class="btn btn-primary col-md-12">Print Report Date<i class="fas fa-print"></i> </a>
+                      </div> --}}  
+                      <style>
+                        button{
+                          width: 100px;
+                        }
+                        a{
+                          width: 100px;
+                        }
+                      </style>
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownexport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownexport">
+                            <button type="submit" class="btn btn-primary toolbar-item ml-4">PDF</button>
+                            {{-- <a class="dropdown-item" href="#">Export as DOCX</a> --}}
+                            <br><br>
+                            {{-- <a class="dropdown-item" class="btn btn-primary toolbar-item ml-4" href="{{ route('manager.xlsx') }}">Export as EXCEL</a> --}}
+                            <a href="{{ route('manager.xlsx') }}" class="btn btn-primary toolbar-item ml-4">EXCEL</a>
+                          </div>
+                    </form>
                   </div>
+                  {{-- End OF Print Date --}}
                 </div>
               </div>
             </div>
@@ -406,19 +408,20 @@
                                         <th>Total Price</th>
                                         <th>Date of Purchase</th>
                                     </tr>
+                                    @php $no = 1 @endphp
                                     @foreach ($transaksis as $transaksi)
                                     <tr>
-                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $no++ }}</td>
                                         {{-- <td>{{ $transaksi->kd_transaksi }}</td> --}}
-                                        <td>{{ $transaksi->kd_barang }}</td>
-                                        <td>{{ $transaksi->kd_user }}</td>
+                                        <td>{{ $transaksi->nama_barang }}</td>
+                                        <td>{{ $transaksi->name }}</td>
                                         <td>{{ $transaksi->jumlah_beli }}</td>
                                         <td>{{ $transaksi->total_harga }}</td>
                                         <td>{{ $transaksi->tanggal_beli }}</td>
                                     </tr>
                                     @endforeach
                                 </table>
-                            {!! $transaksis->links() !!}
+
                             </div>
                         </div>
                       </div>

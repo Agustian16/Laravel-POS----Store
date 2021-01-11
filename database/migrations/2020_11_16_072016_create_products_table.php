@@ -20,6 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('kd_distributor')->nullable();
             $table->date('tanggal_masuk');
             $table->string('harga_barang');
+            $table->string('harga_beli');
+            $table->string('harga_jual');
             $table->string('stok_barang');
             $table->text('keterangan');
             $table->timestamps();

@@ -61,7 +61,7 @@
                 <td>{{ $product->kd_barang }}</td>
                 <td>{{ $product->nama_barang }}</td>
                 <td>{{ $product->kd_merek }}</td>
-                <td>{{ $product->kd_distributors }}</td>
+                <td>{{ $product->kd_distributor}}</td>
                 <td>{{ $product->tanggal_masuk }}</td>
                 <td>{{ $product->harga_barang }}</td>
                 <td>{{ $product->stok_barang }}</td>

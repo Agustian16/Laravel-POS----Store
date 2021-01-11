@@ -14,8 +14,8 @@
     @foreach ($transaksis as $transaksi)
         <tr>
             <td>{{ $no++ }}</td>
-            <td>{{ $transaksi->kd_barang }}</td>
-            <td>{{ $transaksi->kd_user }}</td>
+            <td>{{ $transaksi->nama_barang }}</td>
+            <td>{{ $transaksi->name }}</td>
              <td>{{ $transaksi->jumlah_beli }}</td>
             <td>{{ $transaksi->total_harga }}</td>
             <td>{{ $transaksi->tanggal_beli }}</td>

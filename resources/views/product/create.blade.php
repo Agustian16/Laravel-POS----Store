@@ -28,8 +28,6 @@
     <center>
 <div class="jumbotron text-left" style="width: 400px" height="400px">
      <div class="row">
- 
-
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name Product:</strong>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use App\Models\TransactionView;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TransaksiExport;
@@ -17,7 +18,7 @@ class TransaksiController extends Controller
     {
       $products = Product::all();
       $users = User::all();
-      $transaksis = Transaksi::latest()->paginate(5);
+      $transaksis = TransactionView::latest()->paginate(5);
      return view('transaksi.index',['transaksi'=>$transaksis],compact('transaksis','products'))
          ->with('i', (request()->input('page',1) - 1) * 5);//
   

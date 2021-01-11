@@ -42,7 +42,6 @@
         <thead>
         <tr class="bg-info">
             <th>No.</th>
-            <th>ID</th>
             <th>Name</th>
             <th>Address</th>
             <th>Phone</th>
@@ -53,7 +52,6 @@
         @foreach ($distributors as $distributor)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $distributor->kd_distributor }}</td>
             <td>{{ $distributor->nama_distributor }}</td>
             <td>{{ $distributor->alamat }}</td>
             <td>{{ $distributor->no_telp }}</td>

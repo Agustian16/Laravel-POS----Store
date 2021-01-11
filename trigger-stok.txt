@@ -1,0 +1,2 @@
+CREATE TRIGGER `update_stok` AFTER INSERT ON `transaksis`
+ FOR EACH ROW UPDATE products SET products.stok_barang = products.stok_barang - NEW.jumlah_beli WHERE products.kd_barang = NEW.kd_barang

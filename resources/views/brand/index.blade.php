@@ -42,7 +42,6 @@
         <thead>
         <tr class="bg-info">
             <th>No.</th>
-            <th>ID Brand</th>
             <th>Name Brand</th>
             <th width="280px">Action</th>
         </tr>
@@ -51,7 +50,6 @@
         @foreach ($brands as $brand)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $brand->kd_merek }}</td>
             <td>{{ $brand->merek }}</td>
             <br>
             <td>

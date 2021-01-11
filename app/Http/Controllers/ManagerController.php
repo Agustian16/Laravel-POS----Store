@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Manager;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Transaksi;
+use App\Models\TransactionView;
 use App\Models\Brand;
 use App\Models\Distributor;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TransaksiExport;
+
+
 
 
 class ManagerController extends Controller
@@ -19,7 +23,7 @@ class ManagerController extends Controller
     {
       $products = Product::all();
       $users = User::all();
-      $transaksis = Transaksi::latest()->paginate(5);
+      $transaksis = TransactionView::latest()->paginate(5);
      
   
      return view('manager.index',compact('transaksis','products','users'))
@@ -38,9 +42,11 @@ class ManagerController extends Controller
 	{
 		return Excel::download(new TransaksiExport, 'manager.xlsx');
     }
-    public function cetakPertanggal($tgl_awal, $tgl_akhir)
+    
+    public function cetakPertanggal(Request $request)
     {
-        $transaksis = Transaksi::with('kd_barang','kd_user')
+        $transaksis = TransactionView::whereBetween(DB::raw('DATE(created_at)'), array($request->get('tgl_awal'), $request->get('tgl_akhir')))->latest()->get();
+        return view('manager.pdf.transaksi', compact('transaksis'));
     }
 
 }
